@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "contact": "playwright test contact.spec.js",
+    "order": "playwright test order.spec.js"
   },
   "keywords": [],
   "author": "",
