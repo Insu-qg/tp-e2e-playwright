@@ -25,46 +25,48 @@ test.describe('Contact form', () => {
     await page.screenshot({ path: './test-results/formulaire-envoye.png' });
   });
 
-  test('should not submit if firstname is empty', async ({ page }) => {
-    // Fill form with missing firstname
-    await page.fill('#lastname', 'Doe');
-    await page.fill('#email', 'john.doe@example.com');
-    await page.fill('#message', 'Test message');
+  test.describe('Form validation', () => {
+    test('should not submit if firstname is empty', async ({ page }) => {
+      // Fill form with missing firstname
+      await page.fill('#lastname', 'Doe');
+      await page.fill('#email', 'john.doe@example.com');
+      await page.fill('#message', 'Test message');
 
-    // Submit form
-    await page.click('button[type="submit"]');
+      // Submit form
+      await page.click('button[type="submit"]');
 
-    // Verify confirmation message does not appear
-    const confirmationMessage = await page.locator('#confirmation');
-    await expect(confirmationMessage).not.toBeVisible();
-  });
+      // Verify confirmation message does not appear
+      const confirmationMessage = await page.locator('#confirmation');
+      await expect(confirmationMessage).not.toBeVisible();
+    });
 
-  test('should not submit if email is invalid', async ({ page }) => {
-    // Fill form with invalid email
-    await page.fill('#firstname', 'John');
-    await page.fill('#lastname', 'Doe');
-    await page.fill('#email', 'invalid-email');
-    await page.fill('#message', 'Test message');
+    test('should not submit if email is invalid', async ({ page }) => {
+      // Fill form with invalid email
+      await page.fill('#firstname', 'John');
+      await page.fill('#lastname', 'Doe');
+      await page.fill('#email', 'invalid-email');
+      await page.fill('#message', 'Test message');
 
-    // Submit form
-    await page.click('button[type="submit"]');
+      // Submit form
+      await page.click('button[type="submit"]');
 
-    // Verify confirmation message does not appear
-    const confirmationMessage = await page.locator('#confirmation');
-    await expect(confirmationMessage).not.toBeVisible();
-  });
+      // Verify confirmation message does not appear
+      const confirmationMessage = await page.locator('#confirmation');
+      await expect(confirmationMessage).not.toBeVisible();
+    });
 
-  test('should not submit if message is empty', async ({ page }) => {
-    // Fill form with missing message
-    await page.fill('#firstname', 'John');
-    await page.fill('#lastname', 'Doe');
-    await page.fill('#email', 'john.doe@example.com');
+    test('should not submit if message is empty', async ({ page }) => {
+      // Fill form with missing message
+      await page.fill('#firstname', 'John');
+      await page.fill('#lastname', 'Doe');
+      await page.fill('#email', 'john.doe@example.com');
 
-    // Submit form
-    await page.click('button[type="submit"]');
+      // Submit form
+      await page.click('button[type="submit"]');
 
-    // Verify confirmation message does not appear
-    const confirmationMessage = await page.locator('#confirmation');
-    await expect(confirmationMessage).not.toBeVisible();
+      // Verify confirmation message does not appear
+      const confirmationMessage = await page.locator('#confirmation');
+      await expect(confirmationMessage).not.toBeVisible();
+    });
   });
 });
